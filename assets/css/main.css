@@ -1562,6 +1562,21 @@ section,
 .team .member .pic {
   overflow: hidden;
   margin-bottom: 50px;
+  position: relative;
+  width: 100%;
+  padding-top: 100%; /* Creates square aspect ratio */
+}
+
+.team .member .pic img,
+.team .member .pic .team-member-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
 }
 
 .team .member .member-info {
@@ -1629,6 +1644,8 @@ section,
   background-color: var(--surface-color);
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
   padding: 24px 0 30px 0;
+  height: 100%;
+  min-height: 180px;
 }
 
 .contact .info-item i {
@@ -1708,119 +1725,6 @@ section,
 
 .contact .php-email-form button[type=submit]:hover {
   background: color-mix(in srgb, var(--accent-color), transparent 20%);
-}
-
-/*--------------------------------------------------------------
-# Custom YouTube Video Modal
---------------------------------------------------------------*/
-.youtube-modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 999999;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.youtube-modal.active {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 1;
-}
-
-.youtube-modal-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
-  cursor: pointer;
-}
-
-.youtube-modal-container {
-  position: relative;
-  width: 90%;
-  max-width: 900px;
-  z-index: 1000000;
-  animation: youtubeModalFadeIn 0.3s ease;
-}
-
-@keyframes youtubeModalFadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.youtube-modal-close {
-  position: absolute;
-  top: -40px;
-  right: 0;
-  background: transparent;
-  border: none;
-  color: #ffffff;
-  font-size: 36px;
-  line-height: 1;
-  cursor: pointer;
-  padding: 0;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: color 0.3s ease;
-  z-index: 1000001;
-}
-
-.youtube-modal-close:hover {
-  color: var(--accent-color);
-}
-
-.youtube-modal-content {
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
-  height: 0;
-  overflow: hidden;
-  background: #000;
-  border-radius: 8px;
-}
-
-.youtube-video-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.youtube-video-wrapper iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-@media (max-width: 768px) {
-  .youtube-modal-container {
-    width: 95%;
-  }
-  
-  .youtube-modal-close {
-    top: -35px;
-    font-size: 30px;
-  }
 }
 
 /*--------------------------------------------------------------
