@@ -230,6 +230,11 @@ h6 {
   padding: 20px 0;
   transition: all 0.5s;
   z-index: 997;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
 }
 
 .header .logo {
