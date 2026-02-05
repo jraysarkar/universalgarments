@@ -1567,7 +1567,8 @@ section,
   padding-top: 100%; /* Creates square aspect ratio */
 }
 
-.team .member .pic img {
+.team .member .pic img,
+.team .member .pic .team-member-img {
   position: absolute;
   top: 0;
   left: 0;
@@ -1643,6 +1644,8 @@ section,
   background-color: var(--surface-color);
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
   padding: 24px 0 30px 0;
+  height: 100%;
+  min-height: 180px;
 }
 
 .contact .info-item i {
