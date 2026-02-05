@@ -103,10 +103,29 @@
   window.addEventListener('load', aosInit);
 
   /**
-   * Initiate glightbox
+   * Initiate glightbox – YouTube opens as iframe (type: external) to avoid Plyr error
    */
   const glightbox = GLightbox({
-    selector: '.glightbox'
+    selector: '.glightbox',
+    plyr: {
+      config: {
+        youtube: {
+          noCookie: false,
+          rel: 0
+        }
+      }
+    },
+    afterSlideLoad: function(data) {
+      // Ensure YouTube iframes have allow attribute so video can play in popup
+      const slide = document.querySelector('.gslide.current');
+      if (slide) {
+        const iframe = slide.querySelector('iframe[src*="youtube"]');
+        if (iframe && !iframe.getAttribute('allow')) {
+          iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+          iframe.setAttribute('allowfullscreen', '');
+        }
+      }
+    }
   });
 
   /**
