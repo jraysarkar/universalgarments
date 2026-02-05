@@ -103,10 +103,36 @@
   window.addEventListener('load', aosInit);
 
   /**
-   * Initiate glightbox
+   * Initiate glightbox – YouTube opens as iframe (type: external) to avoid Plyr error
    */
   const glightbox = GLightbox({
-    selector: '.glightbox'
+    selector: '.glightbox',
+    beforeSlideLoad: function(data) {
+      // Force external type for YouTube URLs to prevent Plyr from being used
+      if (data.href && data.href.includes('youtube.com/embed')) {
+        data.type = 'external';
+      }
+    },
+    afterSlideLoad: function(data) {
+      // Ensure YouTube iframes have all required attributes so video can play in popup
+      setTimeout(function() {
+        const slide = document.querySelector('.gslide.current');
+        if (slide) {
+          const iframe = slide.querySelector('iframe[src*="youtube"]');
+          if (iframe) {
+            // Set all required attributes from YouTube embed code
+            iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+            iframe.setAttribute('allowfullscreen', '');
+            iframe.setAttribute('frameborder', '0');
+            iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+            iframe.setAttribute('title', 'YouTube video player');
+            iframe.style.width = '100%';
+            iframe.style.height = '100%';
+            iframe.style.border = 'none';
+          }
+        }
+      }, 200);
+    }
   });
 
   /**
