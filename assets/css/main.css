@@ -897,6 +897,15 @@ section,
   margin: 4px 10px;
 }
 
+.section-title.text-center {
+  text-align: center;
+}
+
+.section-title.text-center h2::after {
+  margin: 4px auto;
+  display: block;
+}
+
 .section-title p {
   color: var(--heading-color);
   margin: 0;
